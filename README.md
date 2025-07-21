@@ -10,7 +10,7 @@ This is a full-stack web application to display the latest Hacker News stories. 
 - Search functionality
 - Pagination support
 - Responsive card layout UI
-- Story details like author, points, time, comments, and domain
+- Story details 
 
 ---
 
