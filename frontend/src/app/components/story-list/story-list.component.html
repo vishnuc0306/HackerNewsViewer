@@ -1,0 +1,35 @@
+<div class="container">
+  <h1 class="subheading">Hacker News Newest Stories</h1>
+
+  <div class="search-bar">
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      (input)="onSearchTermChange()"
+      placeholder="Search stories by title..."
+    />
+  </div>
+
+  <div *ngIf="isLoading" class="loading-spinner">Loading stories...</div>
+
+  <ul class="story-list" *ngIf="!isLoading && stories.length > 0">
+    <li *ngFor="let story of stories" class="story-card">
+      <div *ngIf="story.link; else noLink">
+        <a [href]="story.link" target="_blank" class="story-title">{{ story.title }}</a>
+      </div>
+      <ng-template #noLink>
+        <span class="story-title">{{ story.title }} (No Link Available)</span>
+      </ng-template>
+    </li>
+  </ul>
+
+  <div *ngIf="!isLoading && stories.length === 0">
+    <p>No stories found.</p>
+  </div>
+
+  <div class="pagination-controls" *ngIf="!isLoading && stories.length > 0">
+    <button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+    <span>Page {{ currentPage }}</span>
+    <button (click)="nextPage()" [disabled]="!hasMoreStories">Next</button>
+  </div>
+</div>
